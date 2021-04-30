@@ -123,10 +123,11 @@ class VGG(nn.Module):
 
         assert all([t in self.names for t in targets]),\
             'Specified name does not exist.'
-        # assert torch.all(x >= 0.) and torch.all(x <= 1.),\
-        #     'Normalize tensor to [0, 1]'
-        if torch.all(x >= 0.) and torch.all(x <= 1.):
-            warnings.warn('input tensor is not normalize to [0, 1].')
+        assert torch.all(x >= 0.) and torch.all(x <= 1.),\
+            'Normalize tensor to [0, 1]'
+
+        # if torch.all(x >= 0.) and torch.all(x <= 1.):
+        #     warnings.warn('input tensor is not normalize to [0, 1].')
 
         x = self.z_score(x)
 
